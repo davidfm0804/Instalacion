@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root { /* Paleta de colores */
+    --color-azul-oscuro: #404258;
+    --color-azul-medio: #474E68;
+    --color-azul-claro: #6B728E;
+    --color-acento-azul: #3C7EFC;
+    --color-blanco: #FFF;
+    --color-negro: #000;
+    --color-admin: #fc3c3c;
+    --color-admin-oscuro: #c12d2d;
+}
+
+/* Estilo global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: Nunito;
+    color: var(--color-blanco);
+    background-color: var(--color-azul-medio);
+    line-height: 1.6;
+}

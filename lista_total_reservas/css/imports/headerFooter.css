@@ -1,0 +1,193 @@
+/* Estilo del header */
+header {
+    background-color: var(--color-azul-oscuro);
+    padding: 1rem 2%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del logo */
+.logo {
+    position: absolute;
+    top: 15%;
+    left: 2%;
+}
+
+.logo img {
+    width: 2.5rem;
+    height: auto;
+}
+
+.logo:hover{
+    transform: scale(1.2);
+}
+
+/* Estilo de la navegación */
+nav {
+    display: inline-block;
+}
+
+nav a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--color-acento-azul);
+}
+
+/* Estilo del icono de usuario */
+.icono-usuario {
+    position: absolute;
+    top: 20%;
+    right: 2%;
+}
+
+.icono-usuario img {
+    width: 2rem;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+.icono-usuario img:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo del footer */
+footer {
+    padding: 20px 0;
+    width: 100%;
+    background-color: var(--color-azul-claro);
+}
+
+footer > .colaboradores,
+footer > .cita,
+footer > .contacto {
+    text-align: center;
+    margin-left: 2rem;
+}
+
+footer > .contacto {
+    margin-left: 3%;
+}
+
+footer > .colaboradores,
+footer > .cita,
+footer > .contacto {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    width: 30%; 
+}
+
+footer > .contacto > p {
+    margin: 5px 0;
+}
+
+footer > .colaboradores > p > a {
+    color: white;
+    text-decoration: none;
+}
+
+footer > .colaboradores > p > a:hover {
+    text-shadow: 0px 0px 5px white;
+    transition: all 0.6s;
+}
+
+/* Media query para pantallas más pequeñas */
+/* Diseño para Tablets */
+@media (max-width: 1310px) and (min-width: 768px) {
+    header {
+        padding: 1rem 4%;
+    }
+
+    footer > .colaboradores,
+    footer > .cita,
+    footer > .contacto {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 10px 0; 
+    }
+
+    .colaboradores,
+    .cita,
+    .contacto {
+        text-align: center;
+        margin: 0;
+        padding: 0 1rem;
+    }
+}
+
+/* Diseño para Móviles */
+@media (max-width: 767px) {
+    header {
+        padding: 0.5rem 3%;
+    }
+
+    .logo {
+        top: 30%;
+        left: 5%;
+    }
+
+    .logo img {
+        width: 2rem;
+    }
+
+    /* Menú de navegación */
+    nav {
+        display: block;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .icono-usuario {
+        top: 30%;
+        right: 5%;
+    }
+
+    footer{
+        position: relative;
+    }
+
+    footer > .colaboradores,
+    footer > .cita,
+    footer > .contacto {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 8px 0; 
+    }
+
+    .colaboradores,
+    .cita,
+    .contacto {
+        text-align: center;
+        margin: 0;
+        padding: 0 0.5rem;
+    }
+
+    .colaboradores h2,
+    .contacto h2 {
+        font-size: 1rem;
+    }
+
+    .cita p,
+    .contacto p {
+        font-size: 0.9rem;
+    }
+}
