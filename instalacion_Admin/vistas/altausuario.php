@@ -8,15 +8,17 @@ if(!empty($_POST['nombre']) && !empty($_POST['contra']) && !empty($_POST['correo
     
     $objusuario = new Cusuario();
     $resultado = $objusuario->cInsertarNuevoUsuario($nombre,$contra,$correo);
-    echo 'Usuario Creado Correctamente';
-
-    $resultado2=$objusuario->cCrearUsuario($nombre,$contra);
-    if (file_exists('instalacion.php')) {
-        unlink('instalacion.php');
+    if ($resultado == "Consulta Correcta") {
+        if (file_exists('../../borrar.php')) {
+            header('Location: ../../borrar.php');
+            exit();
+        } else {
+            echo 'Archivo borrar.php no encontrado';
+        }
     } else {
-        die('Archivo instalacion.php no encontrado');
+        echo 'Error: ' . $resultado;
     }
-}else{
+} else {
     echo 'Campo no introducido';
 }
 ?>

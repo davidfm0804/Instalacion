@@ -1,24 +1,25 @@
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     contrasena VARCHAR(50) NOT NULL,
-    correo VARCHAR(100) UNIQUE NOT NULL
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    tipo CHAR(2) NOT NULL CHECK (tipo IN ('ad', 'us'))
 );
 
-CREATE TABLE Tutores (
+CREATE TABLE IF NOT EXISTS Tutores (
     idTutor TINYINT UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     correo VARCHAR(100) NOT NULL UNIQUE, 
     CONSTRAINT pk_tutores PRIMARY KEY (idTutor)
 );
 
-CREATE TABLE Cursos (
+CREATE TABLE IF NOT EXISTS Cursos (
     idCurso CHAR(6) NOT NULL, 
     nombre VARCHAR(50) NOT NULL,
     CONSTRAINT pk_idCurso PRIMARY KEY (idCurso)
 );
 
-CREATE TABLE Clases (
+CREATE TABLE IF NOT EXISTS Clases (
     idCurso CHAR(6) NOT NULL,
     letraClase CHAR(1) NOT NULL,
     nombre VARCHAR(50) NOT NULL,
@@ -26,14 +27,14 @@ CREATE TABLE Clases (
     CONSTRAINT fk_idCurso FOREIGN KEY (idCurso) REFERENCES Cursos(idCurso) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Editoriales (
+CREATE TABLE IF NOT EXISTS Editoriales (
     idEditorial SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL UNIQUE,
     correo VARCHAR(50) NOT NULL UNIQUE,
     telefono CHAR(9) NOT NULL
 );
 
-CREATE TABLE Libros (
+CREATE TABLE IF NOT EXISTS Libros (
     idLibro TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL,
@@ -41,7 +42,7 @@ CREATE TABLE Libros (
     CONSTRAINT fk_idEditorial FOREIGN KEY (idEditorial) REFERENCES Editoriales(idEditorial) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Libros_Cursos (
+CREATE TABLE IF NOT EXISTS Libros_Cursos (
     idLibro TINYINT UNSIGNED NOT NULL,
     idCurso CHAR(6) NOT NULL,
     CONSTRAINT pk_libros_cursos PRIMARY KEY (idLibro, idCurso),
@@ -49,7 +50,7 @@ CREATE TABLE Libros_Cursos (
     CONSTRAINT fk_curso FOREIGN KEY (idCurso) REFERENCES Cursos(idCurso) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Reservas (
+CREATE TABLE IF NOT EXISTS Reservas (
     idReserva INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     dni CHAR(9) NOT NULL,
     nombreTutor VARCHAR(100) NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE Reservas (
     CONSTRAINT fk_reserva_curso FOREIGN KEY (idCurso, letraClase) REFERENCES Clases(idCurso, letraClase) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Reservas_Libros (
+CREATE TABLE IF NOT EXISTS Reservas_Libros (
     idLibro TINYINT UNSIGNED NOT NULL,
     idReserva INT UNSIGNED NOT NULL,
     entregado BOOLEAN NOT NULL,
@@ -74,14 +75,13 @@ CREATE TABLE Reservas_Libros (
     FOREIGN KEY (idReserva) REFERENCES Reservas(idReserva) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
-CREATE TABLE Asignaturas (
+CREATE TABLE IF NOT EXISTS Asignaturas (
     idAsignatura TINYINT UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     CONSTRAINT pk_asignaturas PRIMARY KEY (idAsignatura)
 );
 
-CREATE TABLE clases_asignaturas (
+CREATE TABLE IF NOT EXISTS clases_asignaturas (
     idCurso CHAR(6) NOT NULL,
     letraClase CHAR(1) NOT NULL,
     idAsignatura TINYINT UNSIGNED NOT NULL,

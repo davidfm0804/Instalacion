@@ -7,10 +7,16 @@ class Cusuario {
         $this->objusuario = new Musuario();
     }
     public function cInsertarNuevoUsuario($nombre,$contra,$correo) {
-        return $this->objusuario->mInsertarNuevoUsuario($nombre,$contra,$correo);
-    }
-    public function cCrearUsuario($nombre,$contra) {
-        return $this->objusuario->mCrearUsuario($nombre,$contra);
+        $resultado = $this->objusuario->mInsertarNuevoUsuario($nombre,$contra,$correo);
+        if ($resultado === true) {
+            return "Consulta Correcta";
+        } elseif ($resultado === "Csu") {
+            return "Correo Duplicado";
+        } elseif ($resultado === "Tipo invalido") {
+            return "El tipo de usuario debe ser 'ad' o 'us'";
+        } else {
+            return "Error en el registro";
+        }
     }
 }
 ?>

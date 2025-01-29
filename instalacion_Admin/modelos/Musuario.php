@@ -15,13 +15,20 @@ class Musuario {
     }
 
 public function mInsertarNuevoUsuario($nombre, $contra, $correo) {
-    $SQL = "INSERT INTO usuarios (nombre, contrasena, correo) values('$nombre','$contra','$correo')";
+    try {
+    $SQL = "INSERT INTO usuarios (nombre, contrasena, correo, tipo) values('$nombre','$contra','$correo','ad')";
     $this->conexion->query($SQL);
-}
-public function mCrearUsuario($nombre, $contra) {
-    $query = "CREATE USER '$nombre'@'localhost' IDENTIFIED BY '$contra';";
-    $query .= "GRANT SELECT, INSERT, UPDATE, DELETE ON `appdelibros`.* TO '$nombre'@'localhost';";
-    $this->conexion->multi_query($query);
-}
-}
+    }catch (mysqli_sql_exception $e) {
+        //echo "Error MySQL: " . $e->getCode() . " - " . $e->getMessage(); Te da el codigo de error
+        if ($e->getCode() === 1062) { 
+            return "Csu"; 
+        } elseif ($e->getCode() === 4025) { 
+            return "Tipo invalido"; 
+        } else {
+            return false;
+        }
+    }
+    return true;
+    }
+} 
 ?>
